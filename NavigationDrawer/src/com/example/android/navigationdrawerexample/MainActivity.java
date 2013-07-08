@@ -18,6 +18,7 @@ package com.example.android.navigationdrawerexample;
 
 import java.util.Locale;
 
+import roboguice.inject.InjectView;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -37,10 +38,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 
 /**
  * This example illustrates a common usage of the DrawerLayout widget in the
@@ -75,8 +76,10 @@ import com.actionbarsherlock.view.MenuItem;
  * overlay on top of the current content.
  * </p>
  */
-public class MainActivity extends SherlockFragmentActivity {
+public class MainActivity extends RoboSherlockFragmentActivity {
+	@InjectView(R.id.drawer_layout)
 	private DrawerLayout mDrawerLayout;
+	@InjectView(R.id.left_drawer)
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 
@@ -91,8 +94,8 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		mTitle = mDrawerTitle = getTitle();
 		mPlanetTitles = getResources().getStringArray(R.array.planets_array);
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		// mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		// mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 		// set a custom shadow that overlays the main content when the drawer
 		// opens
