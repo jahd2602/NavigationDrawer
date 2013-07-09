@@ -37,11 +37,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
+import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockFragment;
 
 /**
  * This example illustrates a common usage of the DrawerLayout widget in the
@@ -244,8 +244,11 @@ public class MainActivity extends RoboSherlockFragmentActivity {
 	/**
 	 * Fragment that appears in the "content_frame", shows a planet
 	 */
-	public static class PlanetFragment extends SherlockFragment {
+	public static class PlanetFragment extends RoboSherlockFragment {
 		public static final String ARG_PLANET_NUMBER = "planet_number";
+
+		@InjectView(R.id.image)
+		ImageView imgPlaneta;
 
 		public PlanetFragment() {
 			// Empty constructor required for fragment subclasses
@@ -254,8 +257,12 @@ public class MainActivity extends RoboSherlockFragmentActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_planet,
-					container, false);
+			return inflater.inflate(R.layout.fragment_planet, container, false);
+		}
+
+		@Override
+		public void onViewCreated(View view, Bundle savedInstanceState) {
+			super.onViewCreated(view, savedInstanceState);
 			int i = getArguments().getInt(ARG_PLANET_NUMBER);
 			String planet = getResources()
 					.getStringArray(R.array.planets_array)[i];
@@ -263,10 +270,9 @@ public class MainActivity extends RoboSherlockFragmentActivity {
 			int imageId = getResources().getIdentifier(
 					planet.toLowerCase(Locale.getDefault()), "drawable",
 					getActivity().getPackageName());
-			((ImageView) rootView.findViewById(R.id.image))
-					.setImageResource(imageId);
+			// ((ImageView) rootView.findViewById(R.id.image))
+			imgPlaneta.setImageResource(imageId);
 			getActivity().setTitle(planet);
-			return rootView;
 		}
 	}
 }
