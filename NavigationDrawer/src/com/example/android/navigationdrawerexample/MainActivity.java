@@ -156,21 +156,19 @@ public class MainActivity extends RoboSherlockFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
+		// if (mDrawerToggle.onOptionsItemSelected(item)) {
+		// Handle action buttons
+		switch (item.getItemId()) {
 		// The action bar home/up action should open or close the drawer.
 		// ActionBarDrawerToggle will take care of this.
-		// if (mDrawerToggle.onOptionsItemSelected(item)) {
-		if (item.getItemId() == android.R.id.home) {
-
+		case android.R.id.home:
 			if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
 				mDrawerLayout.closeDrawer(mDrawerList);
 			} else {
 				mDrawerLayout.openDrawer(mDrawerList);
 			}
-
 			return true;
-		}
-		// Handle action buttons
-		switch (item.getItemId()) {
 		case R.id.action_websearch:
 			// create intent to perform web search for this planet
 			Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
