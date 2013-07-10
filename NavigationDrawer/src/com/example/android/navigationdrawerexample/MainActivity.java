@@ -79,7 +79,7 @@ import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockFragmen
 public class MainActivity extends RoboSherlockFragmentActivity {
 	@InjectView(R.id.drawer_layout)
 	private DrawerLayout mDrawerLayout;
-	@InjectView(R.id.left_drawer)
+	@InjectView(R.id.lst_drawer)
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 
@@ -151,6 +151,7 @@ public class MainActivity extends RoboSherlockFragmentActivity {
 		// view
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+
 		return super.onPrepareOptionsMenu(menu);
 	}
 
